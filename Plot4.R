@@ -9,9 +9,9 @@ df_2days <- read.table(text=liNeas[vecN], header = F, sep=";",col.names = c("Dat
                                   "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", 
                                   "Sub_metering_2", "Sub_metering_3"))
 # 4. create a new colum combining the date and time (ntime):
-df_2days$ntime= (as.POSIXct(strptime(paste(inSub$Date,inSub$Time,sep="."), tz="America/Chicago", format="%d/%m/%Y.%H:%M:%OS")))
+df_2days$ntime= (as.POSIXct(strptime(paste(df_2days$Date,df_2days$Time,sep="."), tz="America/Chicago", format="%d/%m/%Y.%H:%M:%OS")))
 # 5. convert the column Global_active_power to numeric:
-df_2days$Global_active_power<-as.numeric(as.character(inSub$Global_active_power))
+df_2days$Global_active_power<-as.numeric(as.character(df_2days$Global_active_power))
 
 # PLOT4:
 png("plot4.png", width = 480, height = 480)
