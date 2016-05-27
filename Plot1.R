@@ -4,13 +4,13 @@
 liNeas <- readLines("household_power_consumption.txt")
 # 2. create a vector with only the dates of interes
 vecN <-   grep("^[1|2]/2/2007", liNeas )
-# 3.1. read the lines of interes from the file:
+# 3 read the lines of interes from the file:
 df_2days <- read.table(text=liNeas[vecN], header = F, sep=";",col.names = c("Date", "Time", "Global_active_power", 
                                   "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", 
                                   "Sub_metering_2", "Sub_metering_3"))
-# 3.2. Optional: create a new colum combining the date and time:
-df_2days$ntime= (as.POSIXct(strptime(paste(df_2days$Date,df_2days$Time,sep="."), tz="America/Chicago", format="%d/%m/%Y.%H:%M:%OS")))
-# 4. Convert the column Global_active_power to numeric:
+# 4. create a new colum combining the date and time (ntime):
+df_2days$ntime= (as.POSIXct(strptime(paste(df_2days$Date, df_2days$Time,sep="."), tz="America/Chicago", format="%d/%m/%Y.%H:%M:%OS")))
+# 5. convert the column Global_active_power to numeric:
 df_2days$Global_active_power<-as.numeric(as.character(df_2days$Global_active_power))
 
 # PLOT1:
